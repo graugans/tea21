@@ -44,6 +44,13 @@ auto main(int argc, char **argv) -> int
     }
     printf("Die Variable count: %d \n",count);
 
+
+    auto start = std::chrono::system_clock::now();
+
+    auto end = std::chrono::system_clock::now();
+    auto elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
+    fmt::print("Ausgabe der Zeit: {}\n", elapsed);
+
     /**
      * The {fmt} lib is a cross platform library for printing and formatting text
      * it is much more convenient than std::cout and printf
