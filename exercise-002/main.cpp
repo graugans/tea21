@@ -6,6 +6,7 @@
 
 auto main(int argc, char **argv) -> int
 {
+    std::srand(std::time(nullptr));
     /**
      * CLI11 is a command line parser to add command line options
      * More info at https://github.com/CLIUtils/CLI11#usage
@@ -29,8 +30,28 @@ auto main(int argc, char **argv) -> int
      * More info at https://fmt.dev/latest/api.html
      */
     fmt::print("Hello, {}!\n", app.get_name());
-    std::vector <int> data(count);
-    fmt::format("created a Vector with {} elements \n", sizeof(data));
+    std::vector<int> data(count);
+    printf("Created vector of size %d \n", data.size());
     /* INSERT YOUR CODE HERE */
+    for (int i = 0; i < data.size(); i++)
+    {
+        data[i]=rand() %101;
+        printf("%d. \t%d \n",i+1 ,data[i]);
+    }
+    for (int n = 0; n < data.size(); n++)
+    {
+        if (data[n]<=data[n-1])
+        {
+            int temp=data[n-1];
+            data[n-1]=data[n];
+            data[n]=temp;
+            n=0;
+        }
+    }
+    printf("_________________________\n");
+    for (int i = 0; i < data.size(); i++)
+    {
+        printf("%d. \t%d \n",i+1 ,data[i]);
+    }
     return 0; /* exit gracefully*/
 }
