@@ -1,6 +1,5 @@
 #include <fmt/chrono.h>
 #include <fmt/format.h>
-
 #include "CLI/CLI.hpp"
 #include "config.h"
 
@@ -36,6 +35,7 @@ auto main(int argc, char **argv) -> int
      */
     fmt::print("Hello, {}!\n", app.get_name());
     printf("%d\n", count);
+    std::sort(v.begin(), v.end());
     printVec(v);
     /* INSERT YOUR CODE HERE */
 
