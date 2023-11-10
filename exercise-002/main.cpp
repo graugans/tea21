@@ -23,7 +23,7 @@ auto main(int argc, char **argv) -> int
     {
         return app.exit(e);
     }
-    printf("%d",count);
+    fmt::print("Count: {}",count);
     /**
      * The {fmt} lib is a cross platform library for printing and formatting text
      * it is much more convenient than std::cout and printf
@@ -31,15 +31,15 @@ auto main(int argc, char **argv) -> int
      */
     fmt::print("Hello, {}!\n", app.get_name());
     std::vector<int> data(count);
-    printf("Created vector of size %d \n", data.size());
+    fmt::print("Created vector of size {} \n", data.size());
     /* INSERT YOUR CODE HERE */
     for (int i = 0; i < data.size(); i++)
     {
         data[i]=rand() %101;
-        printf("%d. \t%d \n",i+1 ,data[i]);
+        fmt::print("{}. \t{} \n",i+1 ,data[i]);
     }
     auto start = std::chrono::system_clock::now();
-    for (int n = 0; n < data.size(); n++)
+    /*for (int n = 0; n < data.size(); n++)
     {
         if (data[n]<=data[n-1])
         {
@@ -48,14 +48,15 @@ auto main(int argc, char **argv) -> int
             data[n]=temp;
             n=0;
         }
-    }
+    }*/
+    std::sort(data.begin(),data.end());
     auto end = std::chrono::system_clock::now();
     auto elapsed = end - start;
-    printf("_________________________\n");
+    fmt::print("_________________________\n");
     for (int i = 0; i < data.size(); i++)
     {
-        printf("%d. \t%d \n",i+1 ,data[i]);
+        fmt::print("{}. \t{} \n",i+1 ,data[i]);
     }
-    printf("Sorting took %d ms", elapsed);
+    fmt::print("Sorting took {}", elapsed);
     return 0; /* exit gracefully*/
 }
