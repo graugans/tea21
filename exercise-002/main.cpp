@@ -4,6 +4,7 @@
 #include "CLI/CLI.hpp"
 #include "config.h"
 
+void printVec(const std::vector<int>& v); 
 auto main(int argc, char **argv) -> int
 {
     int count=20;
@@ -22,7 +23,12 @@ auto main(int argc, char **argv) -> int
     {
         return app.exit(e);
     }
-
+    std::vector<int> v(count);
+    printVec(v);
+    for(int i=0;i<count;i++)
+    {
+        v[i]=((rand() %100)+1);
+    }
     /**
      * The {fmt} lib is a cross platform library for printing and formatting text
      * it is much more convenient than std::cout and printf
@@ -30,7 +36,13 @@ auto main(int argc, char **argv) -> int
      */
     fmt::print("Hello, {}!\n", app.get_name());
     printf("%d\n", count);
+    printVec(v);
     /* INSERT YOUR CODE HERE */
 
     return 0; /* exit gracefully*/
+}
+
+
+void printVec(const std::vector<int>& v) {
+    fmt::print("{}\n", fmt::join(v, ", "));
 }
