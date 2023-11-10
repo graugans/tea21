@@ -16,7 +16,7 @@ auto main(int argc, char **argv) -> int
     try
     {
         app.set_version_flag("-V,--version", fmt::format("{} {}", PROJECT_VER, PROJECT_BUILD_DATE));
-        app.add_option("-c,--count", count, fmt::format("Die Variable count: {}", count));
+        app.add_option("-c,--count", count, fmt::format("Die Variable count: {}", count));          
         app.parse(argc, argv);
     }
     catch (const CLI::ParseError &e)
@@ -25,6 +25,17 @@ auto main(int argc, char **argv) -> int
     }
     std::vector<int> data(count);
     fmt::print("Created a vector with {} elements\n", data.size());
+
+    for(int i = 0; i<= count; i++)
+    {
+        data[i] = rand()%100;
+    }
+
+    std::cout << "Vector data: \n";
+    for (int q = 1; q < count+1; q++) {
+        std::cout << "Nr. " << q << ":\t" << data[q] << " " << "\n";
+    }
+
     printf("Die Variable count: %d \n",count);
 
     /**
