@@ -33,8 +33,8 @@ auto main(int argc, char **argv) -> int
     }
 
     std::cout << "Vector data: \n";
-    for (int q = 0; q < count; q++) {
-        std::cout << "Nr. " << q+1 << ":\t" << data[q] << " " << "\n";
+    for (int cup = 0; cup < count; cup++) {
+        std::cout << "Nr. " << cup+1 << ":\t" << data[cup] << " " << "\n";
     }
     
     std::sort(data.begin(),data.end());
