@@ -12,16 +12,21 @@ auto main(int argc, char **argv) -> int
      * Test commit and push No.2
      */
     CLI::App app{PROJECT_NAME};
+    int count = 20;
     try
     {
         app.set_version_flag("-V,--version", fmt::format("{} {}", PROJECT_VER, PROJECT_BUILD_DATE));
-        app.parse(argc, argv);
+        app.add_option("-c,--count", count, "Die Variable count");
+        app.parse(argc, argv);add
+
+
     }
     catch (const CLI::ParseError &e)
     {
         return app.exit(e);
     }
 
+    printf("%d",count);
     /**
      * The {fmt} lib is a cross platform library for printing and formatting text
      * it is much more convenient than std::cout and printf
