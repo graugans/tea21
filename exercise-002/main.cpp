@@ -29,7 +29,8 @@ auto main(int argc, char **argv) -> int
      * More info at https://fmt.dev/latest/api.html
      */
     fmt::print("Hello, {}!\n", app.get_name());
-
+    std::vector <int> data(count);
+    fmt::format("created a Vector with {} elements \n", sizeof(data));
     /* INSERT YOUR CODE HERE */
     return 0; /* exit gracefully*/
 }
