@@ -38,6 +38,7 @@ auto main(int argc, char **argv) -> int
         data[i]=rand() %101;
         printf("%d. \t%d \n",i+1 ,data[i]);
     }
+    auto start = std::chrono::system_clock::now();
     for (int n = 0; n < data.size(); n++)
     {
         if (data[n]<=data[n-1])
@@ -48,10 +49,13 @@ auto main(int argc, char **argv) -> int
             n=0;
         }
     }
+    auto end = std::chrono::system_clock::now();
+    auto elapsed = end - start;
     printf("_________________________\n");
     for (int i = 0; i < data.size(); i++)
     {
         printf("%d. \t%d \n",i+1 ,data[i]);
     }
+    printf("Sorting took %d ms", elapsed);
     return 0; /* exit gracefully*/
 }
