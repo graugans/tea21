@@ -24,6 +24,7 @@ auto main(int argc, char **argv) -> int
     }
     std::vector<int> v(count);
     printVec(v);
+    std::srand(std::time(nullptr));
     for(int i=0;i<count;i++)
     {
         v[i]=((rand() %100)+1);
@@ -35,7 +36,11 @@ auto main(int argc, char **argv) -> int
      */
     fmt::print("Hello, {}!\n", app.get_name());
     printf("%d\n", count);
+    auto start = std::chrono::system_clock::now();
     std::sort(v.begin(), v.end());
+    auto end = std::chrono::system_clock::now();
+    auto elapsed = end - start;
+    printf("%d\n", elapsed);
     printVec(v);
     /* INSERT YOUR CODE HERE */
 
