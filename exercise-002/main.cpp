@@ -6,6 +6,7 @@
 
 auto main(int argc, char **argv) -> int
 {
+    std::srand(std::time(nullptr));
     /**
      * CLI11 is a command line parser to add command line options
      * More info at https://github.com/CLIUtils/CLI11#usage
@@ -26,16 +27,21 @@ auto main(int argc, char **argv) -> int
     std::vector<int> data(count);
     fmt::print("Created a vector with {} elements\n", data.size());
 
-    for(int i = 0; i<= count; i++)
+    for(int i = 0; i< count; i++)
     {
         data[i] = rand()%100;
     }
 
     std::cout << "Vector data: \n";
-    for (int q = 1; q < count+1; q++) {
-        std::cout << "Nr. " << q << ":\t" << data[q] << " " << "\n";
+    for (int q = 0; q < count; q++) {
+        std::cout << "Nr. " << q+1 << ":\t" << data[q] << " " << "\n";
     }
-
+    
+    std::sort(data.begin(),data.end());
+    fmt::print("sortierte Zahlen:\n");
+    for (int q = 0; q < count; q++) {
+        std::cout << "Nr. " << q+1 << ":\t" << data[q] << " " << "\n";
+    }
     printf("Die Variable count: %d \n",count);
 
     /**
