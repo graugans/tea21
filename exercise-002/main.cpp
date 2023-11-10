@@ -39,10 +39,10 @@ auto main(int argc, char **argv) -> int
     
     std::sort(data.begin(),data.end());
     fmt::print("sortierte Zahlen:\n");
-    for (int q = 0; q < count; q++) {
-        std::cout << "Nr. " << q+1 << ":\t" << data[q] << " " << "\n";
+    for (int cup = 0; cup < count; cup++) {
+        std::cout << "Nr. " << cup+1 << ":\t" << data[cup] << " " << "\n";
     }
-    printf("Die Variable count: %d \n",count);
+    fmt::print("Die Variable count: %d \n",count);
 
 
     auto start = std::chrono::system_clock::now();
