@@ -1,3 +1,4 @@
+
 # Übungsaufgabe Nr. 2
 
 Bevor Sie mit der Bearbeitung der ersten Übungsaufgabe starten wollen wir zunächst Ihre ``git`` Kenntnisse vertiefen. In den letzten Vorlesung Terminen haben Sie das Konzept der verschiedenen remotes kennengelernt. Dies wollen wir nun vertiefen. Am Ende verfügt Ihre lokale Arbeitskopie über mindestens zwei remotes. Aber zunächst alles der Reihe nach.

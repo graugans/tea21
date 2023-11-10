@@ -12,21 +12,21 @@ auto main(int argc, char **argv) -> int
      * Test commit and push No.2
      */
     CLI::App app{PROJECT_NAME};
-    int count = 20;
+    auto count = 20;
     try
     {
         app.set_version_flag("-V,--version", fmt::format("{} {}", PROJECT_VER, PROJECT_BUILD_DATE));
-        app.add_option("-c,--count", count, "Die Variable count");
+        app.add_option("-c,--count", count, fmt::format("Die Variable count: {}", count));
         app.parse(argc, argv);
-
-
     }
     catch (const CLI::ParseError &e)
     {
         return app.exit(e);
     }
-
+    std::vector<int> data(count);
+    fmt::print("Created a vector with {} elements\n", data.size());
     printf("Die Variable count: %d \n",count);
+
     /**
      * The {fmt} lib is a cross platform library for printing and formatting text
      * it is much more convenient than std::cout and printf
