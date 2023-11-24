@@ -63,6 +63,30 @@ Implementieren Sie nun die folgenden Funktionen:
 - Ausgabe des Grauwert Bildes in [Monochromes ASCII-Art](https://de.wikipedia.org/wiki/ASCII-Art#Automatische_Erstellung) und Speicherung in eine Datei
 - Implementieren Sie einen [Schwellwertfilter](https://de.wikipedia.org/wiki/Schwellenwertverfahren)
 
+## Zur Kontrolle
+
+Diese Informationen sollte zu Ihrer Datei passen:
+
+```
+Hello, ./build/bin/exercise-004!
+The filename to use: /workspaces/tea21/build/exercise-004/input.bmp
+======= The Bitmap File Info Header =======
+  > The start: BM
+  > The size in bytes: 43566
+  > The offset in bits: 54
+======= The Bitmap Info Header =======
+  > biSize: 40
+  > biWidth: 195
+  > biHeight: 74
+  > biPlanes: 1
+  > biBitCount: 24
+  > biCompression: 0
+  > biSizeImage: 43512
+  > biXPelsPerMeter: 2835
+  > biYPelsPerMeter: 2835
+  > biClrUsed: 0
+  > biClrImportant: 0
+```
 
 ## Nach getaner Arbeit
 
