@@ -2,6 +2,7 @@
 #define WORKSPACES_TEA21_EXERCISE_004_BMP_H
 
 #include <string>
+#include <vector>
 
 class BMP {
 public:
@@ -18,17 +19,18 @@ private:
         void print(); 
     };
     struct BitmapInfoHeader {
-        uint32_t biSize = 0;
-        int32_t biWidth = 0;
-        int32_t biHeight = 0;
-        uint16_t biPlanes = 0;
-        uint16_t biBitCount = 0;
-        uint32_t biCompression = 0;
-        uint32_t biSizeImage = 0;
-        int32_t biXPelsPerMeter = 0;
-        int32_t biYPelsPerMeter = 0;
-        uint32_t biClrUsed = 0;
-        uint32_t biClrImportant = 0;
+        uint32_t biSize = 0; /* the size of this header, in bytes (40) */
+        int32_t biWidth = 0; /* the bitmap width in pixels (signed integer) */
+        int32_t biHeight = 0; /* the bitmap height in pixels (signed integer) */
+        uint16_t biPlanes = 0; /* the number of color planes (must be 1) */
+        uint16_t biBitCount = 0; /* the number of bits per pixel, which is the color depth of the image. Typical values are 1, 4, 8, 16, 24 and 32.*/
+        uint32_t biCompression = 0; /* the compression method being used. See the next table for a list of possible values */
+        uint32_t biSizeImage = 0; /* the image size. This is the size of the raw bitmap data; a dummy 0 can be given for BI_RGB bitmaps. */
+        int32_t biXPelsPerMeter = 0; /* the horizontal resolution of the image. (pixel per metre, signed integer) */
+        int32_t biYPelsPerMeter = 0; /* the vertical resolution of the image. (pixel per metre, signed integer) */
+        uint32_t biClrUsed = 0; /* the number of colors in the color palette, or 0 to default to 2^n*/
+        uint32_t biClrImportant = 0; /*the number of important colors used, or 0 when every color is important; generally ignored */
+        void print(); 
     };
     struct RGBA {
         uint8_t red   = 0;
@@ -38,5 +40,6 @@ private:
     };
     BitmapFileHeader m_fileHeader;
     BitmapInfoHeader m_infoHeader;
+    std::vector<RGBA> m_pixelBuffer;
 };
 #endif
