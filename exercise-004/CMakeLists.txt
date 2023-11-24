@@ -24,7 +24,10 @@ configure_file("${CMAKE_CURRENT_SOURCE_DIR}/config.h.in" "${CMAKE_CURRENT_BINARY
 include_directories("${CMAKE_CURRENT_BINARY_DIR}/include") # add the output path to the include PATH
 
 # add the executable
-add_executable(${PROJECT_NAME} main.cpp)
+add_executable(${PROJECT_NAME} main.cpp
+                               bmp.h
+                               bmp.cpp
+)
 
 # Add libraries
 target_link_libraries(${PROJECT_NAME} PRIVATE
