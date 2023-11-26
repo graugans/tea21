@@ -63,6 +63,14 @@ Implementieren Sie nun die folgenden Funktionen:
 - Ausgabe des Grauwert Bildes in [Monochromes ASCII-Art](https://de.wikipedia.org/wiki/ASCII-Art#Automatische_Erstellung) und Speicherung in eine Datei
 - Implementieren Sie einen [Schwellwertfilter](https://de.wikipedia.org/wiki/Schwellenwertverfahren)
 
+## Einlesen der binären Daten
+
+Bei der Umsetzung kommt die Frage auf, weshalb der Operator `>>` nicht die erwarteten Ergebnisse erzielt. Dies liegt daran, dass es sich beim Operator `>>` um eine so genannte formatierte Eingabe Funktion handelt ([FormattedInputFunction](https://en.cppreference.com/w/cpp/named_req/FormattedInputFunction)). Damit eignet sich der Operator `>>` um Textdateien zu verarbeiten und Zahlen welche in Text dargestellt sind in einen Integer zu konvertieren. Zum Beispiel `"4711"`, da es sich bei unserem Bitmap Bild um reine Binärdaten handelt funktioniert der Operator `>>` an dieser Stelle nicht und wir müssen auf die Methode [read](https://en.cppreference.com/w/cpp/io/basic_istream/read) zurück greifen. Ein weiterer Vorteil von `read` ist der Umstand, dass die folgenden Bytes `\0`, `\n` und `\r` welche im Strom vorkommen können direkt ohne weitere Behandlung an den die Stelle auf welche `s` zeigt, geschrieben wird.
+
+```cpp
+basic_istream& read( char_type* s, std::streamsize count );
+```
+
 ## Zur Kontrolle
 
 Diese Informationen sollte zu Ihrer Datei passen:
