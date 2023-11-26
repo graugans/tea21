@@ -107,3 +107,35 @@ Haben Sie alle Punkte erfolgreich abgearbeitet erstellen Sie einen Pull-Request 
 - Umgang mit der `CLI11` Bibliothek
 - Einlesen und verarbeiten von Dateiformaten
 - Einfache Bildverarbeitung
+
+## Aus gegebenem Anlass
+
+### Magic Numbers
+
+Benutzen Sie keine `Magic Numbers` beim Programmieren. Verwenden Sie stattdessen lieber Konstanten mit einem sprechendem Namen:
+
+```cpp
+// months are indexed 1..12
+constexpr int first_month = 1;
+constexpr int last_month = 12;
+```
+
+Sie auch [ES.45](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#es45-avoid-magic-constants-use-symbolic-constants) und [Clang-Tidy: readability-magic-numbers](https://clang.llvm.org/extra/clang-tidy/checks/readability/magic-numbers.html)
+
+### Using Namespace std
+
+Verwenden Sie die Direktive `using namespace std;` am Besten niemals in Ihren Programmen. Da es dadurch zu einer Überlagerung der Methoden, Funktionen und Variablen der Standardbibliothek kommen kann. Hier am Beispiel der Funktion sqrt:
+
+```cpp
+#include <cmath>
+using namespace std;
+
+int g(int x)
+{
+    int sqrt = 7;
+    // ...
+    return sqrt(x); // error
+}
+```
+
+Siehe hierzu [SF.6](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#sf6-use-using-namespace-directives-for-transition-for-foundation-libraries-such-as-std-or-within-a-local-scope-only)
