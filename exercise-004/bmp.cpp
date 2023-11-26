@@ -1,7 +1,7 @@
 #include <fmt/format.h>
 #include <fstream>
 #include "bmp.h"
-
+#include <array>
 
 /* Some helper template function to reduce the risk of copy paste errors */
 template<typename T>
@@ -72,6 +72,37 @@ bool BMP::read(const std::string& filename)
     read_value(input_file, &m_infoHeader.biClrUsed);
     read_value(input_file, &m_infoHeader.biClrImportant);
     m_infoHeader.print();
+
+    auto rowSize = floor((m_infoHeader.biWidth*m_infoHeader.biBitCount+31)/32)*4;
+    fmt::println("Row size: {}",rowSize);
+    auto numPaddingBytes = rowSize - m_infoHeader.biWidth*m_infoHeader.biBitCount/8;
+    uint32_t paddingBytes{0};
+    fmt::println("Num padding Bytes: {}",numPaddingBytes);
+
+    std::array<char,10> ascii_lut{'#','*','+','~','8','O','o',':',' ',' '};
+
+    if(m_infoHeader.biBitCount==24)
+    {
+        m_pixelBuffer.resize(m_infoHeader.biHeight);
+        for(int row = 0; row < m_infoHeader.biHeight; row++)
+        {
+            fmt::println("Row: {}",row);
+            m_pixelBuffer[row].resize(m_infoHeader.biWidth);
+            for (int col; col < m_infoHeader.biWidth; col++)
+            {
+                read_value(input_file, &m_pixelBuffer[row][col].red);
+                read_value(input_file, &m_pixelBuffer[row][col].green);
+                read_value(input_file, &m_pixelBuffer[row][col].blue);
+                unsigned int gray = std::floor((m_pixelBuffer[row][col].red + m_pixelBuffer[row][col].red + m_pixelBuffer[row][col].red) / 3);
+                auto ascii_index = 0;
+                fmt::print("{}", ascii_lut[(int)((gray * (ascii_lut.size() - 1)) / 255)]);
+            }
+            fmt::println("|");
+            input_file.read(reinterpret_cast<char*>(&paddingBytes), numPaddingBytes);    
+        }
+    }
+
+
     return ret;
 }
 

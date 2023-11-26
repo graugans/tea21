@@ -40,6 +40,6 @@ private:
     };
     BitmapFileHeader m_fileHeader;
     BitmapInfoHeader m_infoHeader;
-    std::vector<RGBA> m_pixelBuffer;
+    std::vector< std::vector<RGBA> > m_pixelBuffer;
 };
 #endif
