@@ -1,34 +1,77 @@
 #include <fmt/chrono.h>
 #include <fmt/format.h>
 
+#include <iostream>
+#include <chrono>
+#include <thread>
+
 #include "CLI/CLI.hpp"
 #include "config.h"
 
+typedef enum{
+    db_state_open = 0,
+    db_state_closed = 1,
+    db_state_opening = 2,
+    db_state_closing = 3,
+    db_state_max
+} GarageState_t;
+
+GarageState_t state = db_state_closed;
+
+void stateMachine(){
+    int input;
+    std::cin >> input;
+    switch(state)
+    {
+        case db_state_open:
+            if(1 == input)
+            {
+                state = db_state_closing;
+            }
+        break;
+
+        case db_state_closed:
+            if(1 == input)
+            {
+                state = db_state_opening;
+            }
+        break;
+
+        case db_state_opening:
+            if(1 == input)
+            {
+                state = db_state_closing;
+            }
+            else if(2 == input)
+            {
+                state = db_state_open;
+            }
+        break;
+
+        case db_state_closing:
+            if(1 == input)
+            {
+                state = db_state_opening;
+            }
+            else if(2 == input)
+            {
+                state = db_state_closed;
+            }
+        break;
+    }
+    std::cout << state << std::endl;
+}
+
+void sleep_ms(int millisekunden) {
+    std::this_thread::sleep_for(std::chrono::milliseconds(millisekunden));
+}
+
 auto main(int argc, char **argv) -> int
 {
-    /**
-     * CLI11 is a command line parser to add command line options
-     * More info at https://github.com/CLIUtils/CLI11#usage
-     */
-    CLI::App app{PROJECT_NAME};
-    try
+    while( 1==1 )
     {
-        app.set_version_flag("-V,--version", fmt::format("{} {}", PROJECT_VER, PROJECT_BUILD_DATE));
-        app.parse(argc, argv);
+    stateMachine();
+    sleep_ms(100);
     }
-    catch (const CLI::ParseError &e)
-    {
-        return app.exit(e);
-    }
-
-    /**
-     * The {fmt} lib is a cross platform library for printing and formatting text
-     * it is much more convenient than std::cout and printf
-     * More info at https://fmt.dev/latest/api.html
-     */
-    fmt::print("Hello, {}!\n", app.get_name());
-
-    /* INSERT YOUR CODE HERE */
-
     return 0; /* exit gracefully*/
 }
